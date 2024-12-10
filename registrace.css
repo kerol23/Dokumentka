@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('modre1.jpg') no-repeat center center fixed;
+    background-size: 100% auto;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+label {
+    font-weight: bold;
+    margin-top: 8px;
+    display: block;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.note {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    margin-top: 8px;
+}
+.submit-btn {
+    width: 100%;
+    padding: 8px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+.terms {
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-size: cover;
+        background-position: center center;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background-size: cover;
+        background-position: center top;
+    }
+}

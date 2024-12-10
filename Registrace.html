@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrace</title>
+    <link rel="stylesheet" href="registrace.css">
+</head>
+<body>
+<div class="container">
+  <h1>Registrace</h1>
+  <form action="#" method="POST">
+    <label for="jmeno">Jméno <span style="color: red;">*</span></label>
+    <input type="text" id="jmeno" name="jmeno" required>
+
+    <label for="prijmeni">Příjmení <span style="color: red;">*</span></label>
+    <input type="text" id="prijmeni" name="prijmeni" required>
+
+    <label for="email">E-mail <span style="color: red;">*</span></label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="telefon">Telefonní číslo <span style="color: red;">*</span></label>
+    <input type="tel" id="telefon" name="telefon" required>
+
+    <label for="heslo">Heslo <span style="color: red;">*</span></label>
+    <input type="password" id="heslo" name="heslo" required>
+
+    <label for="potvrzeni_hesla">Potvrzení hesla <span style="color: red;">*</span></label>
+    <input type="password" id="potvrzeni_hesla" name="potvrzeni_hesla" required>
+
+    <p class="note">
+      Registrací uživatel souhlasí se zpracováním svých osobních údajů v souladu s platnou legislativou o ochraně osobních údajů.
+    </p>
+
+    <button type="submit" class="submit-btn">Registrovat se</button>
+  </form>
+</div>
+</body>
+</html>
