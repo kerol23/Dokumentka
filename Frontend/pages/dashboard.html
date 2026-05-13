@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard – Dokumentka</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .modal .input-wrapper input,
+        .modal .input-wrapper select {
+            width: 100% !important;
+            background: rgba(255,255,255,0.07) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+            border-radius: 12px !important;
+            padding: 16px 16px 16px 48px !important;
+            color: white !important;
+            font-size: 1rem !important;
+            outline: none !important;
+            height: auto !important;
+        }
+        .modal .form-group label {
+            display: block !important;
+            color: rgba(255,255,255,0.7) !important;
+            font-size: 0.95rem !important;
+            font-weight: 600 !important;
+            margin-bottom: 10px !important;
+        }
+        .modal .form-group {
+            margin-bottom: 24px !important;
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+        <a href="dashboard.html" class="nav-logo">
+            <i class="fas fa-file-alt"></i>
+            <span>Dokumentka</span>
+        </a>
+    </div>
+
+    <nav class="sidebar-nav">
+        <div class="nav-section">
+            <span class="nav-section-title">Hlavní</span>
+            <a href="#" class="nav-item active" onclick="showSection('all', this)">
+                <i class="fas fa-home"></i>
+                <span>Přehled</span>
+            </a>
+            <a href="#" class="nav-item" onclick="showSection('search', this)">
+                <i class="fas fa-search"></i>
+                <span>Vyhledávání</span>
+            </a>
+        </div>
+
+        <div class="nav-section">
+            <span class="nav-section-title">Kategorie</span>
+            <a href="#" class="nav-item" onclick="showSection('all', this)">
+                <i class="fas fa-layer-group"></i>
+                <span>Všechny dokumenty</span>
+            </a>
+            <a href="#" class="nav-item" onclick="showCategory('FAKTURY', this)">
+                <i class="fas fa-file-invoice"></i>
+                <span>Faktury</span>
+            </a>
+            <a href="#" class="nav-item" onclick="showCategory('PRACE', this)">
+                <i class="fas fa-briefcase"></i>
+                <span>Práce</span>
+            </a>
+            <a href="#" class="nav-item" onclick="showCategory('POJISTENI', this)">
+                <i class="fas fa-shield-alt"></i>
+                <span>Pojištění</span>
+            </a>
+            <a href="#" class="nav-item" onclick="showCategory('BANKA', this)">
+                <i class="fas fa-university"></i>
+                <span>Banka</span>
+            </a>
+            <a href="#" class="nav-item" onclick="showCategory('ZDRAVOTNI', this)">
+                <i class="fas fa-heartbeat"></i>
+                <span>Zdravotní</span>
+            </a>
+            <a href="#" class="nav-item" onclick="showCategory('SKOLA', this)">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Škola</span>
+            </a>
+            <a href="#" class="nav-item" onclick="showCategory('OSTATNI', this)">
+                <i class="fas fa-folder"></i>
+                <span>Ostatní</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Plan badge -->
+    <div class="sidebar-plan" id="plan-badge">
+        <div class="plan-info">
+            <i class="fas fa-crown" id="plan-icon"></i>
+            <div>
+                <span class="plan-name" id="plan-name">Basic plán</span>
+                <small id="plan-docs">0/10 dokumentů</small>
+            </div>
+        </div>
+        <button class="btn-upgrade" id="plan-toggle-btn" onclick="togglePlan()">
+            Upgradovat na Premium
+        </button>
+    </div>
+
+    <div id="plan-notification" class="plan-notification" style="display:none"></div>
+</aside>
+
+<!-- HLAVNÍ OBSAH -->
+<main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="page-title" id="page-title">Přehled dokumentů</h1>
+        </div>
+        <div class="topbar-right">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Hledat dokumenty..." id="search-input"
+                       oninput="handleSearch(this.value)">
+            </div>
+            <button class="btn-primary btn-add" onclick="openAddModal()">
+                <i class="fas fa-plus"></i> Přidat dokument
+            </button>
+            <div class="user-menu" id="user-menu">
+                <div class="user-avatar" id="user-avatar" onclick="toggleUserMenu()">K</div>
+                <div class="user-dropdown" id="user-dropdown" style="display:none">
+                    <a href="profile.html" class="dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <span>Profil</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item logout" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Odhlásit se</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- STATS -->
+    <div class="top-stats">
+        <div class="top-stat">
+            <i class="fas fa-file-alt"></i>
+            <span id="total-docs">0</span>
+            <label>dokumentů celkem</label>
+        </div>
+    </div>
+
+    <!-- DOKUMENTY -->
+    <div class="documents-section">
+        <div class="section-header" id="section-header">
+            <h2 id="section-title">Všechny dokumenty</h2>
+            <div class="view-toggle">
+                <button class="view-btn active" onclick="setView('grid')" id="grid-btn">
+                    <i class="fas fa-th"></i>
+                </button>
+                <button class="view-btn" onclick="setView('list')" id="list-btn">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="documents-container"></div>
+
+        <div class="empty-state" id="empty-state" style="display:none">
+            <i class="fas fa-folder-open"></i>
+            <h3>Žádné dokumenty</h3>
+            <p>Zatím nemáte žádné dokumenty. Přidejte svůj první!</p>
+            <button class="btn-primary" onclick="openAddModal()">
+                <i class="fas fa-plus"></i> Přidat první dokument
+            </button>
+        </div>
+    </div>
+</main>
+
+<!-- MODAL - Přidat dokument -->
+<div class="modal-overlay" id="add-modal" style="display:none">
+    <div class="modal">
+        <div class="modal-header">
+            <h2 id="add-modal-title">Přidat dokument</h2>
+            <button class="modal-close" onclick="closeModal('add-modal')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div id="modal-error" class="alert alert-error" style="display:none"></div>
+            <form id="add-form">
+                <div class="form-group">
+                    <label>Název dokumentu</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-file-alt"></i>
+                        <input type="text" id="doc-name" placeholder="Např. Faktura za elektřinu" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Kategorie</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-folder"></i>
+                        <select id="doc-category" required>
+                            <option value="">Vyberte kategorii</option>
+                            <option value="FAKTURY">Faktury</option>
+                            <option value="PRACE">Práce</option>
+                            <option value="POJISTENI">Pojištění</option>
+                            <option value="BANKA">Banka</option>
+                            <option value="ZDRAVOTNI">Zdravotní</option>
+                            <option value="SKOLA">Škola</option>
+                            <option value="OSTATNI">Ostatní</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Popis (nepovinné)</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-align-left"></i>
+                        <input type="text" id="doc-description" placeholder="Krátký popis dokumentu">
+                    </div>
+                </div>
+                <div class="form-group" id="file-group">
+                    <label>Soubor (nepovinné)</label>
+                    <div class="file-upload" onclick="document.getElementById('doc-file').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span id="file-label">Klikněte pro nahrání souboru</span>
+                        <small>PDF, JPG, PNG — max 10MB</small>
+                        <input type="file" id="doc-file" accept=".pdf,.jpg,.jpeg,.png"
+                               style="display:none" onchange="handleFileSelect(this)">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-outline" onclick="closeModal('add-modal')">
+                        Zrušit
+                    </button>
+                    <button type="submit" class="btn-primary" id="add-btn">
+                        Přidat dokument
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL - Detail dokumentu -->
+<div class="modal-overlay" id="detail-modal" style="display:none">
+    <div class="modal">
+        <div class="modal-header">
+            <h2 id="detail-title">Detail dokumentu</h2>
+            <button class="modal-close" onclick="closeModal('detail-modal')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body" id="detail-body">
+        </div>
+    </div>
+</div>
+
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

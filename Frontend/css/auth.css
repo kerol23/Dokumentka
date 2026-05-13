@@ -1,0 +1,346 @@
+/* ===== AUTH STRÁNKY ===== */
+.auth-body {
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-container {
+    display: flex;
+    flex: 1;
+    min-height: 100vh;
+    padding-top: 70px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dekorativní kruhy na pozadí */
+.auth-container::before {
+    content: '';
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(0,200,83,0.1) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.auth-container::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(48,43,99,0.5) 0%, transparent 70%);
+    bottom: -100px;
+    right: -100px;
+    border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite reverse;
+}
+
+.auth-left {
+    display: none;
+}
+
+/* ===== FORMULÁŘ UPROSTŘED ===== */
+.auth-right {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+    padding: 24px;
+}
+
+.auth-card {
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 28px;
+    padding: 60px;
+    width: 100%;
+    animation: slideUp 0.8s ease forwards;
+}
+
+.auth-card h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.auth-subtitle {
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 40px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.auth-subtitle a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.auth-subtitle a:hover {
+    color: var(--accent);
+}
+
+/* ===== FORMULÁŘ ===== */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 18px;
+    color: rgba(255,255,255,0.3);
+    font-size: 1rem;
+    transition: color 0.2s;
+    pointer-events: none;
+}
+
+.input-wrapper input {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 18px 18px 18px 48px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s;
+    outline: none;
+}
+
+.input-wrapper input::placeholder {
+    color: rgba(255,255,255,0.25);
+}
+
+.input-wrapper input:focus {
+    border-color: var(--primary);
+    background: rgba(0,200,83,0.05);
+    box-shadow: 0 0 0 3px rgba(0,200,83,0.1);
+}
+
+.input-wrapper:focus-within i:first-child {
+    color: var(--primary);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 18px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.3);
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s;
+    font-size: 1rem;
+}
+
+.toggle-password:hover {
+    color: var(--primary);
+}
+
+/* ===== FORM OPTIONS ===== */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    gap: 16px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    accent-color: var(--primary);
+}
+
+.forgot-password {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+    white-space: nowrap;
+}
+
+.forgot-password:hover {
+    color: var(--primary);
+}
+
+/* ===== TLAČÍTKO ===== */
+.btn-full {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    font-size: 1.1rem;
+    border-radius: 14px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+/* ===== ALERTS ===== */
+.alert {
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+    animation: slideDown 0.3s ease;
+}
+
+.alert-error {
+    background: rgba(231,76,60,0.15);
+    border: 1px solid rgba(231,76,60,0.3);
+    color: #e74c3c;
+}
+
+.alert-success {
+    background: rgba(0,200,83,0.15);
+    border: 1px solid rgba(0,200,83,0.3);
+    color: var(--primary);
+}
+
+/* ===== LOADING ===== */
+.btn-loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-loading::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    animation: spin 0.8s linear infinite;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* ===== ANIMACE ===== */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+body {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== DEKORATIVNÍ PRVKY ===== */
+.auth-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.auth-decoration-card {
+    position: absolute;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 24px 36px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: rgba(255,255,255,0.7);
+    font-size: 1.15rem;
+    font-weight: 500;
+    animation: floatCard 6s ease-in-out infinite;
+}
+
+.auth-decoration-card i {
+    color: var(--primary);
+    font-size: 2rem;
+}
+
+.auth-decoration-card:nth-child(1) {
+    top: 22%;
+    left: 16%;
+    animation-delay: 0s;
+}
+
+.auth-decoration-card:nth-child(2) {
+    top: 58%;
+    left: 8%;
+    animation-delay: 1s;
+}
+
+.auth-decoration-card:nth-child(3) {
+    top: 22%;
+    right: 16%;
+    animation-delay: 0.5s;
+}
+
+.auth-decoration-card:nth-child(4) {
+    top: 58%;
+    right: 8%;
+    animation-delay: 1.5s;
+}
+
+@keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.form-terms {
+    margin-bottom: 28px;
+}
+
+.form-terms a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.form-terms a:hover {
+    color: var(--accent);
+}

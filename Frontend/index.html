@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentka – Vaše dokumenty na jednom místě</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="#" class="nav-logo">
+            <i class="fas fa-file-alt"></i>
+            <span>Dokumentka</span>
+        </a>
+        <div class="nav-links">
+            <a href="#features">Funkce</a>
+            <a href="#pricing">Ceník</a>
+            <a href="pages/login.html" class="btn-outline">Přihlásit se</a>
+            <a href="pages/register.html" class="btn-primary">Začít zdarma</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-bolt"></i>
+                Nová generace správy dokumentů
+            </div>
+            <h1>Všechny vaše dokumenty<br><span class="highlight">na jednom místě</span></h1>
+            <p>Zapomeňte na hromady papírů. Dokumentka vám pomůže organizovat faktury, smlouvy, pojištění a vše ostatní — bezpečně a přehledně.</p>
+            <div class="hero-buttons">
+                <a href="pages/register.html" class="btn-primary btn-large">
+                    <i class="fas fa-rocket"></i> Začít zdarma
+                </a>
+                <a href="#features" class="btn-outline btn-large">Zjistit více</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Kategorií</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Bezpečné</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">Zdarma</span>
+                    <span class="stat-label">Základní plán</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-card">
+                <i class="fas fa-file-invoice"></i>
+                <div class="hero-card-info">
+                    <span>Faktura_2024.pdf</span>
+                    <small>Faktury • Právě přidáno</small>
+                </div>
+            </div>
+            <div class="hero-card">
+                <i class="fas fa-file-contract"></i>
+                <div class="hero-card-info">
+                    <span>Pracovní smlouva</span>
+                    <small>Práce • 2 dny zpět</small>
+                </div>
+            </div>
+            <div class="hero-card">
+                <i class="fas fa-file-medical"></i>
+                <div class="hero-card-info">
+                    <span>Pojištění auta</span>
+                    <small>Pojištění • 1 týden zpět</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+    <div class="container">
+        <h2>Proč Dokumentka?</h2>
+        <p class="section-subtitle">Vše co potřebujete pro správu dokumentů</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Bezpečné uložení</h3>
+                <p>Vaše dokumenty jsou chráněny šifrováním a bezpečným přihlášením pomocí JWT tokenů.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Rychlé vyhledávání</h3>
+                <p>Najděte jakýkoliv dokument během sekund pomocí chytrého fulltextového vyhledávání.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <h3>Přehledné kategorie</h3>
+                <p>Faktury, smlouvy, pojištění — vše přehledně rozdělené do kategorií.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-upload"></i>
+                </div>
+                <h3>Nahrávání souborů</h3>
+                <p>Nahrajte PDF, fotky a další soubory přímo k dokumentům.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Dostupné odkudkoliv</h3>
+                <p>Přistupte ke svým dokumentům z počítače, tabletu i telefonu kdykoliv potřebujete.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI kategorizace</h3>
+                <p>Brzy dostupné — umělá inteligence automaticky roztřídí vaše dokumenty.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+    <div class="container">
+        <h2>Jednoduché ceny</h2>
+        <p class="section-subtitle">Začněte zdarma, upgradujte kdy budete chtít</p>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Basic</h3>
+                    <div class="price">
+                        <span class="amount">Zdarma</span>
+                    </div>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Až 10 dokumentů</li>
+                    <li><i class="fas fa-check"></i> Základní kategorie</li>
+                    <li><i class="fas fa-check"></i> Nahrávání souborů</li>
+                    <li><i class="fas fa-check"></i> Vyhledávání</li>
+                    <li class="disabled"><i class="fas fa-times"></i> Neomezené dokumenty</li>
+                    <li class="disabled"><i class="fas fa-times"></i> AI kategorizace</li>
+                </ul>
+                <a href="pages/register.html" class="btn-outline btn-full">Začít zdarma</a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="pricing-badge">Nejoblíbenější</div>
+                <div class="pricing-header">
+                    <h3>Premium</h3>
+                    <div class="price">
+                        <span class="amount">99 Kč</span>
+                        <span class="period">/měsíc</span>
+                    </div>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Neomezené dokumenty</li>
+                    <li><i class="fas fa-check"></i> Všechny kategorie</li>
+                    <li><i class="fas fa-check"></i> Nahrávání souborů</li>
+                    <li><i class="fas fa-check"></i> Vyhledávání</li>
+                    <li><i class="fas fa-check"></i> Prioritní podpora</li>
+                    <li><i class="fas fa-check"></i> AI kategorizace (brzy)</li>
+                </ul>
+                <a href="pages/register.html" class="btn-primary btn-full">Začít s Premium</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="nav-logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Dokumentka</span>
+                </div>
+                <p>Vaše dokumenty bezpečně na jednom místě. Moderní řešení pro organizaci osobních dokumentů.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Aplikace</h4>
+                <a href="#features">Funkce</a>
+                <a href="#pricing">Ceník</a>
+                <a href="pages/login.html">Přihlásit se</a>
+                <a href="pages/register.html">Registrace</a>
+            </div>
+            <div class="footer-links">
+                <h4>Informace</h4>
+                <a href="pages/about.html">O nás</a>
+                <a href="pages/privacy.html">Ochrana soukromí</a>
+                <a href="pages/terms.html">Podmínky použití</a>
+                <a href="pages/contact.html">Kontakt</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Dokumentka. Všechna práva vyhrazena.</p>
+            <div class="footer-bottom-links">
+                <a href="pages/privacy.html">Soukromí</a>
+                <a href="pages/terms.html">Podmínky</a>
+                <a href="pages/contact.html">Kontakt</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

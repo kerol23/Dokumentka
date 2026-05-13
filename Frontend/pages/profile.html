@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil – Dokumentka</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+        <a href="dashboard.html" class="nav-logo">
+            <i class="fas fa-file-alt"></i>
+            <span>Dokumentka</span>
+        </a>
+    </div>
+
+    <nav class="sidebar-nav">
+        <div class="nav-section">
+            <span class="nav-section-title">Hlavní</span>
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Přehled</span>
+            </a>
+        </div>
+        <div class="nav-section">
+            <span class="nav-section-title">Kategorie</span>
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-layer-group"></i>
+                <span>Všechny dokumenty</span>
+            </a>
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-file-invoice"></i>
+                <span>Faktury</span>
+            </a>
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-briefcase"></i>
+                <span>Práce</span>
+            </a>
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>Pojištění</span>
+            </a>
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-university"></i>
+                <span>Banka</span>
+            </a>
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-heartbeat"></i>
+                <span>Zdravotní</span>
+            </a>
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Škola</span>
+            </a>
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-folder"></i>
+                <span>Ostatní</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="sidebar-plan" id="plan-badge">
+        <div class="plan-info">
+            <i class="fas fa-crown" id="plan-icon"></i>
+            <div>
+                <span class="plan-name" id="plan-name">Basic plán</span>
+                <small id="plan-docs">0/10 dokumentů</small>
+            </div>
+        </div>
+        <button class="btn-upgrade" id="plan-toggle-btn" onclick="togglePlan()">
+            Upgradovat na Premium
+        </button>
+    </div>
+    <div id="plan-notification" class="plan-notification" style="display:none"></div>
+</aside>
+
+<!-- HLAVNÍ OBSAH -->
+<main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <h1 class="page-title">Profil</h1>
+        </div>
+        <div class="topbar-right">
+            <div class="user-menu" id="user-menu">
+                <div class="user-avatar" id="user-avatar" onclick="toggleUserMenu()">K</div>
+                <div class="user-dropdown" id="user-dropdown" style="display:none">
+                    <a href="profile.html" class="dropdown-item active">
+                        <i class="fas fa-user"></i>
+                        <span>Profil</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item logout" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Odhlásit se</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- PROFIL OBSAH -->
+    <div class="profile-container">
+
+        <!-- Avatar sekce -->
+        <div class="profile-header-card">
+            <div class="profile-avatar" id="profile-avatar">K</div>
+            <div class="profile-header-info">
+                <h2 id="profile-username">Načítám...</h2>
+                <p id="profile-email">načítám@email.cz</p>
+                <span class="profile-plan-badge" id="profile-plan">Basic</span>
+            </div>
+        </div>
+
+        <!-- Split layout -->
+        <div class="profile-split">
+
+            <!-- LEVÁ STRANA - formulář -->
+            <div class="profile-left">
+                <div class="profile-card">
+                    <div class="profile-card-header">
+                        <i class="fas fa-user-edit"></i>
+                        <h3>Upravit profil</h3>
+                    </div>
+
+                    <div id="profile-success" class="alert alert-success" style="display:none"></div>
+                    <div id="profile-error" class="alert alert-error" style="display:none"></div>
+
+                    <form id="profile-form">
+                        <div class="form-group">
+                            <label>Nové uživatelské jméno</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="new-username" placeholder="Zadejte nové uživatelské jméno">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Nový email</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="new-email" placeholder="Zadejte nový email">
+                            </div>
+                        </div>
+                        <div class="profile-divider">
+                            <span>Změna hesla</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Současné heslo</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="current-password"
+                                       placeholder="Zadejte současné heslo">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Nové heslo</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="new-password"
+                                       placeholder="Zadejte nové heslo (min. 6 znaků)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Nové heslo znovu</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="new-password-confirm"
+                                       placeholder="Zopakujte nové heslo">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary btn-full">
+                            <i class="fas fa-save"></i> Uložit změny
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Nebezpečná zóna -->
+                <div class="profile-card danger-zone">
+                    <div class="profile-card-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Pozor</h3>
+                    </div>
+                    <p class="danger-description">
+                        Smazání účtu je nevratná akce. Všechny vaše dokumenty budou trvale odstraněny.
+                    </p>
+                    <button class="btn-danger" onclick="confirmDeleteAccount()">
+                        <i class="fas fa-trash-alt"></i> Smazat účet
+                    </button>
+                </div>
+            </div>
+
+            <!-- PRAVÁ STRANA - plán info -->
+            <div class="profile-right">
+
+                <!-- Aktuální plán -->
+                <div class="profile-card plan-card" id="plan-card">
+                    <div class="profile-card-header">
+                        <i class="fas fa-crown"></i>
+                        <h3>Váš plán</h3>
+                    </div>
+                    <div class="current-plan-info" id="current-plan-info">
+                        <div class="plan-badge-large" id="plan-badge-large">Basic</div>
+                        <p id="plan-description">Základní plán zdarma s až 10 dokumenty.</p>
+                    </div>
+                    <button class="btn-primary btn-full" id="plan-switch-btn" onclick="togglePlan()">
+                        <i class="fas fa-arrow-up"></i> Upgradovat na Premium
+                    </button>
+                </div>
+
+                <!-- Co zahrnuje Basic -->
+                <div class="profile-card features-card" id="features-card">
+                    <div class="profile-card-header">
+                        <i class="fas fa-list-check"></i>
+                        <h3 id="features-title">Co zahrnuje Basic</h3>
+                    </div>
+                    <ul class="features-list" id="features-list">
+                        <li class="feature-item yes">
+                            <i class="fas fa-check"></i>
+                            <span>Až 10 dokumentů</span>
+                        </li>
+                        <li class="feature-item yes">
+                            <i class="fas fa-check"></i>
+                            <span>Základní kategorie</span>
+                        </li>
+                        <li class="feature-item yes">
+                            <i class="fas fa-check"></i>
+                            <span>Nahrávání souborů</span>
+                        </li>
+                        <li class="feature-item yes">
+                            <i class="fas fa-check"></i>
+                            <span>Vyhledávání</span>
+                        </li>
+                        <li class="feature-item no">
+                            <i class="fas fa-times"></i>
+                            <span>Neomezené dokumenty</span>
+                        </li>
+                        <li class="feature-item no">
+                            <i class="fas fa-times"></i>
+                            <span>AI kategorizace</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- MODAL - Potvrzení smazání -->
+<div class="modal-overlay" id="delete-modal" style="display:none">
+    <div class="modal">
+        <div class="modal-header">
+            <h2>Smazat účet</h2>
+            <button class="modal-close" onclick="closeDeleteModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="delete-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Opravdu chcete smazat svůj účet? Tato akce je <strong>nevratná</strong> a všechna vaše data budou trvale odstraněna.</p>
+            </div>
+            <div class="form-group" style="margin-top: 24px;">
+                <label>Pro potvrzení zadejte své heslo</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="delete-password"
+                           placeholder="Zadejte heslo pro potvrzení">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline" onclick="closeDeleteModal()">Zrušit</button>
+                <button class="btn-danger" onclick="deleteAccount()">
+                    <i class="fas fa-trash-alt"></i> Smazat účet
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/profile.js"></script>
+</body>
+</html>
